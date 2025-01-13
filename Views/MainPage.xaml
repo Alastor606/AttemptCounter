@@ -17,7 +17,7 @@
             <RowDefinition Height="50"></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
-        <TextBlock Foreground="White" TextAlignment="Center" FontSize="30" FontWeight="Bold">Folders</TextBlock>
+        <TextBlock Foreground="White" TextAlignment="Center" FontSize="30" FontWeight="Bold">Все разделы</TextBlock>
         <ListBox Grid.Row="2" Name="FolderList" BorderBrush="{x:Null}" MouseDoubleClick="FolderList_MouseDoubleClick" Background="#FF1B1B1B" Foreground="White" HorizontalContentAlignment="Center" >
             <ListBox.ItemTemplate>
                 <DataTemplate>
@@ -28,7 +28,7 @@
             </ListBox.ItemTemplate>
         </ListBox>
         <StackPanel Grid.Column="1" Grid.Row="1" Orientation="Vertical" VerticalAlignment="Bottom">
-            <Button  Margin="0,20" VerticalAlignment="Bottom" FontSize="30" Height="35" Width="35" FontWeight="Bold" Click="Button_Click" BorderBrush="{x:Null}">
+            <Button  Margin="0,20" VerticalAlignment="Bottom" FontSize="30" Height="35" Width="35" FontWeight="Bold" Click="Button_Click" BorderBrush="{x:Null}" ToolTip="Добавить раздел">
                 <Button.Background>
                     <ImageBrush ImageSource="/Resourse/plus.jpg"/>
                 </Button.Background>

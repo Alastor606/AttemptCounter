@@ -9,9 +9,9 @@
         Topmost="True" 
         WindowStyle="None" 
         AllowsTransparency="True" 
-        Background="Transparent" ResizeMode="NoResize" SizeToContent="Width"
-        Loaded="Window_Loaded">
+        Background="Transparent" ResizeMode="NoResize"
+        Loaded="Window_Loaded" WindowState="Maximized">
     <Grid>
-        <TextBlock Name="CounterText" Foreground="White" Margin="20" FontSize="14"></TextBlock>
+        <TextBlock Name="CounterText" Foreground="White" Margin="20" FontSize="14">11</TextBlock>
     </Grid>
 </Window>

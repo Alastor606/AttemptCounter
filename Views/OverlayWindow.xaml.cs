@@ -29,7 +29,6 @@ namespace TryCounter.Views
 
             CounterText.FontSize = CounterAPI.Settings.FontSize;
             CounterText.Foreground = new System.Windows.Media.SolidColorBrush(CounterAPI.Settings.FontColor);
-
             CurrentCounter = currentCounter;
             CurrentCounter.OnChange += x =>
             {
@@ -47,6 +46,47 @@ namespace TryCounter.Views
             {
                 SetWindowPos(new System.Windows.Interop.WindowInteropHelper(this).Handle, HWND_TOPMOST, 0, 0, 0, 0, SWP_NOMOVE | SWP_NOSIZE);
             };
+            SetTextPos();
+        }
+
+        private void SetTextPos()
+        {
+            switch (CounterAPI.Settings.TextPos)
+            {
+                case TextPosition.leftTop:
+                    break;
+                case TextPosition.leftCenter:
+                    CounterText.VerticalAlignment = VerticalAlignment.Center;
+                    break;
+                case TextPosition.leftBot:
+                    CounterText.VerticalAlignment = VerticalAlignment.Bottom;
+                    break;
+                case TextPosition.rightTop:
+                    CounterText.HorizontalAlignment = System.Windows.HorizontalAlignment.Right;
+                    CounterText.VerticalAlignment = VerticalAlignment.Top;
+                    break;
+                case TextPosition.rightCenter:
+                    CounterText.HorizontalAlignment = System.Windows.HorizontalAlignment.Right;
+                    CounterText.VerticalAlignment = VerticalAlignment.Center;
+                    break;
+                case TextPosition.rightBot:
+                    CounterText.HorizontalAlignment = System.Windows.HorizontalAlignment.Right;
+                    CounterText.VerticalAlignment = VerticalAlignment.Bottom;
+                    break;
+                case TextPosition.midBot:
+                    CounterText.HorizontalAlignment = System.Windows.HorizontalAlignment.Center;
+                    CounterText.VerticalAlignment = VerticalAlignment.Bottom;
+                    break;
+                case TextPosition.midCenter:
+                    CounterText.HorizontalAlignment = System.Windows.HorizontalAlignment.Center;
+                    CounterText.VerticalAlignment = VerticalAlignment.Center;
+                    break;
+                case TextPosition.midTop:
+                    CounterText.HorizontalAlignment = System.Windows.HorizontalAlignment.Center;
+                    CounterText.VerticalAlignment = VerticalAlignment.Top;
+                    break;
+            }
+            
         }
 
         private void ShowSelf(KeyPressedEventArgs e)

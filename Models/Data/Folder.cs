@@ -7,6 +7,12 @@ namespace TryCounter.Models.Data
     {
         public string Name { get; set; }
         public List<Counter> Counters { get; set; }
+        public int FullCount { get
+            {
+                var result = 0;
+                foreach (var item in Counters) result += item.Count;
+                return result;
+            } }
 
         public Folder(string name)
         {

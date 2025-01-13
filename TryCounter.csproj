@@ -67,6 +67,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Models\Data\OverlaySettings.cs" />
+    <Compile Include="Models\Data\TextPosition.cs" />
     <Compile Include="Models\Extensions.cs" />
     <Compile Include="Models\Log.cs" />
     <Compile Include="Views\CounterPage.xaml.cs">

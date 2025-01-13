@@ -1,6 +1,7 @@
 ﻿using GlobalHotKey;
 using Newtonsoft.Json;
 using System;
+using System.Linq;
 using System.Reflection;
 using System.Windows.Controls;
 using System.Windows.Forms;
@@ -23,6 +24,9 @@ namespace TryCounter.Views
             InitializeComponent();
             CurrentCounter = counter;
             BackPage = backPage;
+            ShowAllAttempts.IsChecked = CounterAPI.Settings.ShowFolderCounts;
+            TextPositionInput.ItemsSource = Enum.GetValues(typeof(TextPosition)).Cast<TextPosition>().ToList();
+            TextPositionInput.SelectedIndex = (int)CounterAPI.Settings.TextPos;
             Render();
             AdditionalValue.TextChanged += delegate
             {
@@ -33,16 +37,22 @@ namespace TryCounter.Views
                 }
                 CurrentCounter.Additional = value;
             };
-
             CounterName.TextChanged += delegate
             {
                 CurrentCounter.Name = CounterName.Text;
                 PlaceHolder();
             };
-
             CounterName.GotFocus += delegate
             {
                 CounterName.Text = string.Empty;
+            };
+            ShowAllAttempts.Checked += delegate
+            {
+                CounterAPI.Settings.ShowFolderCounts = (bool)ShowAllAttempts.IsChecked;
+            };
+            TextPositionInput.SelectionChanged += delegate
+            {
+                CounterAPI.Settings.TextPos = (TextPosition)TextPositionInput.SelectedItem ;
             };
 
             CounterAPI.Bind(new HotKey(Key.A, ModifierKeys.Alt), Add);
@@ -84,7 +94,8 @@ namespace TryCounter.Views
             if (id == BackPage.CurrentFolder.Counters.Count - 1) CurrentCounter = BackPage.CurrentFolder.Counters[0];
             else if (BackPage.CurrentFolder.Counters.Count > 1)CurrentCounter = BackPage.CurrentFolder.Counters[id + 1];
 
-            OnSwapCounter?.Invoke($"{CurrentCounter.Name} - {CurrentCounter.Count}");
+            if(!(bool)ShowAllAttempts.IsChecked)OnSwapCounter?.Invoke($"{CurrentCounter.Name} : {CurrentCounter.Count}");
+            else OnSwapCounter?.Invoke($"{BackPage.CurrentFolder.Name} : {BackPage.CurrentFolder.FullCount}\n{CurrentCounter.Name} : {CurrentCounter.Count}");
             Render();
         }
 
@@ -92,7 +103,8 @@ namespace TryCounter.Views
         {
             if (e.HotKey.Key != Key.E || e.HotKey.Modifiers != ModifierKeys.Alt) return;
             RemoveButton_Click(null,null);
-            OnChange?.Invoke($"{CurrentCounter.Name} - {CurrentCounter.Count}");
+            if (!(bool)ShowAllAttempts.IsChecked) OnChange?.Invoke($"{CurrentCounter.Name} : {CurrentCounter.Count}");
+            else OnChange?.Invoke($"{BackPage.CurrentFolder.Name} : {BackPage.CurrentFolder.FullCount}\n{CurrentCounter.Name} : {CurrentCounter.Count}");
         }
 
         public void Rebind() =>
@@ -102,7 +114,6 @@ namespace TryCounter.Views
         private void ShowOverlay(KeyPressedEventArgs e)
         {
             if (e.HotKey.Key != Key.Q || !MainWindow.singletone.IsVisible) return;
-            CounterAPI.UnBind(new HotKey(Key.Q, ModifierKeys.Alt));
             ShowOverlay(null, null);
         }
 
@@ -111,7 +122,8 @@ namespace TryCounter.Views
             if(e.HotKey.Key == Key.A)
             {
                 AddButton_Click(null, null);
-                OnChange?.Invoke($"{CurrentCounter.Name} - {CurrentCounter.Count}");
+                if (!(bool)ShowAllAttempts.IsChecked) OnChange?.Invoke($"{CurrentCounter.Name} : {CurrentCounter.Count}");
+                else OnChange?.Invoke($"{BackPage.CurrentFolder.Name} : {BackPage.CurrentFolder.FullCount}\n{CurrentCounter.Name} : {CurrentCounter.Count}");
             }
         }
 
@@ -143,6 +155,7 @@ namespace TryCounter.Views
         private void ShowOverlay(object sender, System.Windows.RoutedEventArgs e)
         {
             MainWindow.singletone.Hide();
+            CounterAPI.UnBind(new HotKey(Key.Q, ModifierKeys.Alt));
             var overlay = new OverlayWindow(this);
             var screens = Screen.AllScreens;
 
@@ -157,7 +170,8 @@ namespace TryCounter.Views
 
             overlay.Show();
 
-            OnChange?.Invoke($"{CurrentCounter.Name} - {CurrentCounter.Count}");
+            if (!(bool)ShowAllAttempts.IsChecked) OnChange?.Invoke($"{CurrentCounter.Name} : {CurrentCounter.Count}");
+            else OnChange?.Invoke($"{BackPage.CurrentFolder.Name} : {BackPage.CurrentFolder.FullCount}\n{CurrentCounter.Name} : {CurrentCounter.Count}");
             overlay.Closed += delegate
             {
                 CounterAPI.Save();

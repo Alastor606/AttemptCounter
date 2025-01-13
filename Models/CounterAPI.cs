@@ -26,7 +26,8 @@ namespace TryCounter.Models
                 Settings = (new OverlaySettings()
                 {
                     FontSize = 14,
-                    FontColor = Color.FromRgb(255, 255, 255)
+                    FontColor = Color.FromRgb(255, 255, 255),
+                    ShowFolderCounts = false
                 });
                 File.WriteAllText(OverlaySettingsPath, JsonConvert.SerializeObject(Settings));
                 Data = new MainData();

@@ -17,9 +17,9 @@
         </Grid.RowDefinitions>
         <TextBox FontSize="25" TextAlignment="Center" BorderBrush="{x:Null}" Name="CounterName" Grid.ColumnSpan="2" Background="#FF212121" Foreground="White" UndoLimit="30"></TextBox>
         <StackPanel Grid.Row="1" Orientation="Horizontal" Width="500">
-            <Button Height="50" Width="50" FontSize="30" Name="RemoveButton" Margin="50" Click="RemoveButton_Click">-</Button>
-            <TextBlock Name="CounterTB" Width="100" Height="50" Margin="50" Foreground="White" FontSize="25" FontWeight="Bold" TextAlignment="Center"></TextBlock>
-            <Button Height="50" Width="50" FontSize="30" Name="AddButton" Margin="60,0" Click="AddButton_Click">+</Button>
+            <Button Height="50" Width="50" FontSize="30" Name="RemoveButton" Margin="50" Click="RemoveButton_Click" ToolTip="Отнять добавляемое значение">-</Button>
+            <TextBlock Name="CounterTB" Width="100" Height="50" Margin="50" Foreground="White" FontSize="25" FontWeight="Bold" TextAlignment="Center" ToolTip="Общее колличество попыток"></TextBlock>
+            <Button Height="50" Width="50" FontSize="30" Name="AddButton" Margin="60,0" Click="AddButton_Click" ToolTip="Прибавить добавляемое значение">+</Button>
         </StackPanel>
         <Grid Grid.Row="2">
             <Grid.ColumnDefinitions>
@@ -28,48 +28,56 @@
                 <ColumnDefinition Width="50"></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <StackPanel>
-                <StackPanel Orientation="Horizontal">
+                <StackPanel Orientation="Horizontal" ToolTip="Значение, которое добавляется к счету">
                     <TextBlock FontSize="15" Foreground="White">Добавляемое значение</TextBlock>
                     <TextBox Name="AdditionalValue" Width="100" Margin="40,0" FontSize="15"></TextBox>
                 </StackPanel>
-                <StackPanel Orientation="Horizontal" Margin="0,20">
+                <StackPanel Orientation="Horizontal" Margin="0,20" ToolTip="Бинд на прибавление">
                     <TextBlock FontSize="15" Foreground="White">Плюс</TextBlock>
                     <TextBlock x:Name="AddBind" Margin="40,0" FontSize="15" Foreground="White" Width="150" TextAlignment="Center">alt + a</TextBlock>
                 </StackPanel>
-                <StackPanel Orientation="Horizontal">
+                <StackPanel Orientation="Horizontal" ToolTip="Бинд на убывание">
                     <TextBlock FontSize="15" Foreground="White">Минус</TextBlock>
                     <TextBlock x:Name="RemoveBind" Margin="40,0" FontSize="15" Foreground="White" Width="150" TextAlignment="Center">alt + e</TextBlock>
                 </StackPanel>
-                <StackPanel Orientation="Horizontal" Margin="0,20">
+                <StackPanel Orientation="Horizontal" Margin="0,20" ToolTip="Включает\выключает оверлей">
                     <TextBlock FontSize="15" Foreground="White">Открытие\закрытие оверлея</TextBlock>
                     <TextBlock x:Name="OverlayBind"  FontSize="15" Foreground="White" Width="150" TextAlignment="Center">alt + q</TextBlock>
                 </StackPanel>
-                <StackPanel Orientation="Horizontal">
+                <StackPanel Orientation="Horizontal" ToolTip="Переключение между счетчиками">
                     <TextBlock FontSize="15" Foreground="White">Следующий счетчик</TextBlock>
                     <TextBlock x:Name="NextCounter"  FontSize="15" Foreground="White" Width="150" TextAlignment="Center">ctrl + alt + e</TextBlock>
                 </StackPanel>
             </StackPanel>
             <StackPanel  Grid.Column="1">
-                <StackPanel Orientation="Horizontal">
+                <StackPanel Orientation="Horizontal" ToolTip="Размер шрифта всех надписей в оверлее">
                     <TextBlock FontSize="15" Foreground="White" Margin="30,0">Размер шрифта</TextBlock>
                     <TextBox Name="OverlayFontSize" Width="100" Margin="40,0"></TextBox>
                 </StackPanel>
-                <StackPanel Orientation="Horizontal" Margin="0,20">
+                <StackPanel Orientation="Horizontal" Margin="0,10" ToolTip="Цвет текста в оверлее">
                     <TextBlock FontSize="15" Foreground="White" Margin="30,0">Цвет текста</TextBlock>
                     <Button Margin="67,0" Width="100" Height="25" BorderBrush="{x:Null}" Background="White" Click="PickColor">Выбрать</Button>
                     <Rectangle Name="colorDisplay" Width="25" Height="25" Stroke="Black" Margin="-50,0" Fill="White"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" ToolTip="Показать полное колличество попыток в этом разделе внутри оверлея">
+                    <TextBlock FontSize="15" Foreground="White" Margin="30,0">Положение надписи</TextBlock>
+                    <ComboBox Name="TextPositionInput" Width="100"></ComboBox>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" ToolTip="Показать полное колличество попыток в этом разделе внутри оверлея" Margin="0,10">
+                    <TextBlock FontSize="15" Foreground="White" Margin="30,0">Показывать попытки всего раздела</TextBlock>
+                    <CheckBox Name="ShowAllAttempts"></CheckBox>
                 </StackPanel>
                 <Button Width="125" Height="25" Click="ShowOverlay" Margin="0,20">Оверлей</Button>
             </StackPanel>
             
             
             <StackPanel Grid.Column="2" Orientation="Vertical" VerticalAlignment="Bottom">
-                <Button Margin="0,20" VerticalAlignment="Bottom" FontSize="30" Height="35" Width="35" FontWeight="Bold" Click="Button_Click" BorderBrush="{x:Null}">
+                <Button Margin="0,20" VerticalAlignment="Bottom" FontSize="30" Height="35" Width="35" FontWeight="Bold" Click="Button_Click" BorderBrush="{x:Null}" ToolTip="Назад">
                     <Button.Background>
                         <ImageBrush ImageSource="/Resourse/Back.png"/>
                     </Button.Background>
                 </Button>
-                <Button Margin="0,20" VerticalAlignment="Bottom" FontSize="30" Height="35" Width="35" FontWeight="Bold" Click="RemoveCounter" BorderBrush="{x:Null}">
+                <Button Margin="0,20" VerticalAlignment="Bottom" FontSize="30" Height="35" Width="35" FontWeight="Bold" Click="RemoveCounter" BorderBrush="{x:Null}" ToolTip="Удалить счетчик">
                     <Button.Background>
                         <ImageBrush ImageSource="/Resourse/Crest.png" Stretch="UniformToFill"/>
                     </Button.Background>
