@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 
 
 namespace TryCounter.Models.Data
@@ -22,6 +23,20 @@ namespace TryCounter.Models.Data
             }
             folder = Folders.FirstOrDefault(x => x.Name == folderName);
             return true;
+        }
+
+        public override string ToString()
+        {
+            var sb = new StringBuilder();
+            foreach (var item in Folders)
+            {
+                sb.Append($"--{item.Name}--\n");
+                for (int i = 0; i < item.Counters.Count; i++)
+                {
+                    sb.Append($"{i}. {item.Counters[i]}\n");
+                }
+            }
+            return sb.ToString();
         }
     }
 }

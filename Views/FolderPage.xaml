@@ -32,12 +32,12 @@
             </ListBox.ItemTemplate>
         </ListBox>
         <StackPanel Grid.Column="1" Grid.Row="1" Orientation="Vertical" VerticalAlignment="Bottom">
-            <Button VerticalAlignment="Bottom" FontSize="30" Height="35" Width="35" FontWeight="Bold" Click="Button_Click_1" BorderBrush="{x:Null}" ToolTip="Назад">
+            <Button VerticalAlignment="Bottom" FontSize="30" Height="35" Width="35" FontWeight="Bold" Click="Back" BorderBrush="{x:Null}" ToolTip="Назад">
                 <Button.Background>
                     <ImageBrush ImageSource="/Resourse/Back.png"/>
                 </Button.Background>
             </Button>
-            <Button  Margin="0,20" VerticalAlignment="Bottom" FontSize="30" Height="35" Width="35" FontWeight="Bold" Click="Button_Click" BorderBrush="{x:Null}" ToolTip="Добавить счетчик">
+            <Button  Margin="0,20" VerticalAlignment="Bottom" FontSize="30" Height="35" Width="35" FontWeight="Bold" Click="AddCounter" BorderBrush="{x:Null}" ToolTip="Добавить счетчик">
                 <Button.Background>
                     <ImageBrush ImageSource="/Resourse/plus.jpg"/>
                 </Button.Background>

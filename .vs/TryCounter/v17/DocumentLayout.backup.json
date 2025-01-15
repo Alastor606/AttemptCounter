@@ -3,16 +3,24 @@
   "WorkspaceRootPath": "C:\\Users\\Main\\Desktop\\Scripts\\TryCounter\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{1AB5F8F9-0D06-475D-9B18-24276CE91627}|TryCounter.csproj|c:\\users\\main\\desktop\\scripts\\trycounter\\views\\overlaywindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{1AB5F8F9-0D06-475D-9B18-24276CE91627}|TryCounter.csproj|c:\\users\\main\\desktop\\scripts\\trycounter\\mainwindow.xaml.cs||{8B382828-6202-11D1-8870-0000F87579D2}|",
+      "RelativeMoniker": "D:0:0:{1AB5F8F9-0D06-475D-9B18-24276CE91627}|TryCounter.csproj|solutionrelative:mainwindow.xaml.cs||{8B382828-6202-11D1-8870-0000F87579D2}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1AB5F8F9-0D06-475D-9B18-24276CE91627}|TryCounter.csproj|c:\\users\\main\\desktop\\scripts\\trycounter\\views\\folderpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1AB5F8F9-0D06-475D-9B18-24276CE91627}|TryCounter.csproj|solutionrelative:views\\folderpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1AB5F8F9-0D06-475D-9B18-24276CE91627}|TryCounter.csproj|c:\\users\\main\\desktop\\scripts\\trycounter\\views\\mainpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1AB5F8F9-0D06-475D-9B18-24276CE91627}|TryCounter.csproj|solutionrelative:views\\mainpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1AB5F8F9-0D06-475D-9B18-24276CE91627}|TryCounter.csproj|C:\\Users\\Main\\Desktop\\Scripts\\TryCounter\\models\\counterapi.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1AB5F8F9-0D06-475D-9B18-24276CE91627}|TryCounter.csproj|solutionrelative:models\\counterapi.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1AB5F8F9-0D06-475D-9B18-24276CE91627}|TryCounter.csproj|C:\\Users\\Main\\Desktop\\Scripts\\TryCounter\\views\\overlaywindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{1AB5F8F9-0D06-475D-9B18-24276CE91627}|TryCounter.csproj|solutionrelative:views\\overlaywindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1AB5F8F9-0D06-475D-9B18-24276CE91627}|TryCounter.csproj|c:\\users\\main\\desktop\\scripts\\trycounter\\views\\counterpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{1AB5F8F9-0D06-475D-9B18-24276CE91627}|TryCounter.csproj|solutionrelative:views\\counterpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1AB5F8F9-0D06-475D-9B18-24276CE91627}|TryCounter.csproj|C:\\Users\\Main\\Desktop\\Scripts\\TryCounter\\views\\overlaywindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{1AB5F8F9-0D06-475D-9B18-24276CE91627}|TryCounter.csproj|solutionrelative:views\\overlaywindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{1AB5F8F9-0D06-475D-9B18-24276CE91627}|TryCounter.csproj|c:\\users\\main\\desktop\\scripts\\trycounter\\views\\counterpage.xaml.cs||{8B382828-6202-11D1-8870-0000F87579D2}|",
@@ -26,56 +34,84 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "MainPage.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\Main\\Desktop\\Scripts\\TryCounter\\Views\\MainPage.xaml.cs",
+              "RelativeDocumentMoniker": "Views\\MainPage.xaml.cs",
+              "ToolTip": "C:\\Users\\Main\\Desktop\\Scripts\\TryCounter\\Views\\MainPage.xaml.cs",
+              "RelativeToolTip": "Views\\MainPage.xaml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-15T14:47:46.358Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "FolderPage.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\Main\\Desktop\\Scripts\\TryCounter\\Views\\FolderPage.xaml.cs",
+              "RelativeDocumentMoniker": "Views\\FolderPage.xaml.cs",
+              "ToolTip": "C:\\Users\\Main\\Desktop\\Scripts\\TryCounter\\Views\\FolderPage.xaml.cs",
+              "RelativeToolTip": "Views\\FolderPage.xaml.cs",
+              "ViewState": "AgIAADUAAAAAAAAAAAAYwEEAAAAsAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-15T14:41:48.332Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "MainWindow.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\Main\\Desktop\\Scripts\\TryCounter\\MainWindow.xaml.cs",
+              "RelativeDocumentMoniker": "MainWindow.xaml.cs",
+              "ToolTip": "C:\\Users\\Main\\Desktop\\Scripts\\TryCounter\\MainWindow.xaml.cs",
+              "RelativeToolTip": "MainWindow.xaml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAeAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-15T13:02:23.933Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "CounterAPI.cs",
+              "DocumentMoniker": "C:\\Users\\Main\\Desktop\\Scripts\\TryCounter\\Models\\CounterAPI.cs",
+              "RelativeDocumentMoniker": "Models\\CounterAPI.cs",
+              "ToolTip": "C:\\Users\\Main\\Desktop\\Scripts\\TryCounter\\Models\\CounterAPI.cs",
+              "RelativeToolTip": "Models\\CounterAPI.cs",
+              "ViewState": "AgIAAFEAAAAAAAAAAAAcwGcAAAAbAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-14T11:56:13.014Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "OverlayWindow.xaml.cs",
               "DocumentMoniker": "C:\\Users\\Main\\Desktop\\Scripts\\TryCounter\\Views\\OverlayWindow.xaml.cs",
               "RelativeDocumentMoniker": "Views\\OverlayWindow.xaml.cs",
               "ToolTip": "C:\\Users\\Main\\Desktop\\Scripts\\TryCounter\\Views\\OverlayWindow.xaml.cs",
               "RelativeToolTip": "Views\\OverlayWindow.xaml.cs",
-              "ViewState": "AgIAACsAAAAAAAAAAAAAADQAAAAJAAAAAAAAAA==",
+              "ViewState": "AgIAABEAAAAAAAAAAAAEwGMAAABBAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-01-13T06:49:35.559Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 5,
               "Title": "CounterPage.xaml.cs",
               "DocumentMoniker": "C:\\Users\\Main\\Desktop\\Scripts\\TryCounter\\Views\\CounterPage.xaml.cs",
               "RelativeDocumentMoniker": "Views\\CounterPage.xaml.cs",
               "ToolTip": "C:\\Users\\Main\\Desktop\\Scripts\\TryCounter\\Views\\CounterPage.xaml.cs",
               "RelativeToolTip": "Views\\CounterPage.xaml.cs",
-              "ViewState": "AgIAABMAAAAAAAAAAAAQwDsAAABOAAAAAAAAAA==",
+              "ViewState": "AgIAANoAAAAAAAAAAAAqwAMBAAAnAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-01-13T06:34:37.86Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "OverlayWindow.xaml",
-              "DocumentMoniker": "C:\\Users\\Main\\Desktop\\Scripts\\TryCounter\\Views\\OverlayWindow.xaml",
-              "RelativeDocumentMoniker": "Views\\OverlayWindow.xaml",
-              "ToolTip": "C:\\Users\\Main\\Desktop\\Scripts\\TryCounter\\Views\\OverlayWindow.xaml",
-              "RelativeToolTip": "Views\\OverlayWindow.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-01-11T11:31:17.591Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "CounterPage.xaml",
-              "DocumentMoniker": "C:\\Users\\Main\\Desktop\\Scripts\\TryCounter\\Views\\CounterPage.xaml",
-              "RelativeDocumentMoniker": "Views\\CounterPage.xaml",
-              "ToolTip": "C:\\Users\\Main\\Desktop\\Scripts\\TryCounter\\Views\\CounterPage.xaml",
-              "RelativeToolTip": "Views\\CounterPage.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-01-11T12:04:14.947Z",
               "EditorCaption": ""
             }
           ]

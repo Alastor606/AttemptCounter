@@ -27,7 +27,7 @@ namespace TryCounter.Models.Data
 
         public override string ToString()
         {
-            return Name;
+            return Name + "\n" + Count;
         }
     }
 }

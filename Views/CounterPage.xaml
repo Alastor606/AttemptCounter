@@ -72,7 +72,7 @@
             
             
             <StackPanel Grid.Column="2" Orientation="Vertical" VerticalAlignment="Bottom">
-                <Button Margin="0,20" VerticalAlignment="Bottom" FontSize="30" Height="35" Width="35" FontWeight="Bold" Click="Button_Click" BorderBrush="{x:Null}" ToolTip="Назад">
+                <Button Margin="0,20" VerticalAlignment="Bottom" FontSize="30" Height="35" Width="35" FontWeight="Bold" Click="Back" BorderBrush="{x:Null}" ToolTip="Назад">
                     <Button.Background>
                         <ImageBrush ImageSource="/Resourse/Back.png"/>
                     </Button.Background>

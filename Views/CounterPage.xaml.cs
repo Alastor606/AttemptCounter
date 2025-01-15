@@ -1,8 +1,10 @@
 ﻿using GlobalHotKey;
 using Newtonsoft.Json;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Threading;
 using System.Windows.Controls;
 using System.Windows.Forms;
 using System.Windows.Input;
@@ -16,12 +18,34 @@ namespace TryCounter.Views
     public partial class CounterPage : Page
     {
         public Counter CurrentCounter;
-        private FolderPage BackPage;
+        public FolderPage BackPage;
         public Action<string> OnChange, OnSwapCounter;
+
+        public CounterPage()
+        {
+            InitializeComponent();
+            CounterAPI.BindActions(new List<Action<KeyPressedEventArgs>>()
+            {
+                ShowOverlay,
+                Add,
+                Remove,
+                CounterNext
+            });
+            MainWindow.singletone.Closing += delegate
+            {
+                if(CurrentCounter != null && CounterName.Text != string.Empty)CurrentCounter.Name = CounterName.Text;
+            };
+        }
 
         public CounterPage(Counter counter, FolderPage backPage)
         {
             InitializeComponent();
+            Init(counter,backPage);
+        }
+
+        public void Init(Counter counter, FolderPage backPage)
+        {
+            
             CurrentCounter = counter;
             BackPage = backPage;
             ShowAllAttempts.IsChecked = CounterAPI.Settings.ShowFolderCounts;
@@ -52,20 +76,20 @@ namespace TryCounter.Views
             };
             TextPositionInput.SelectionChanged += delegate
             {
-                CounterAPI.Settings.TextPos = (TextPosition)TextPositionInput.SelectedItem ;
+                CounterAPI.Settings.TextPos = (TextPosition)TextPositionInput.SelectedItem;
             };
 
-            CounterAPI.Bind(new HotKey(Key.A, ModifierKeys.Alt), Add);
-            CounterAPI.Bind(new HotKey(Key.E, ModifierKeys.Alt), Remove);
-            CounterAPI.Bind(new HotKey(Key.Q, ModifierKeys.Alt), ShowOverlay);
-            CounterAPI.Bind(new HotKey(Key.E, ModifierKeys.Control | ModifierKeys.Alt), CounterNext);
+            CounterAPI.Bind(new HotKey(Key.A, ModifierKeys.Alt));
+            CounterAPI.Bind(new HotKey(Key.E, ModifierKeys.Alt));
+            CounterAPI.Bind(new HotKey(Key.Q, ModifierKeys.Alt));
+            CounterAPI.Bind(new HotKey(Key.E, ModifierKeys.Control | ModifierKeys.Alt));
 
             OverlayFontSize.Text = CounterAPI.Settings.FontSize.ToString();
             colorDisplay.Fill = new System.Windows.Media.SolidColorBrush(CounterAPI.Settings.FontColor);
 
             OverlayFontSize.TextChanged += delegate
             {
-                if(!int.TryParse(OverlayFontSize.Text, out int value))
+                if (!int.TryParse(OverlayFontSize.Text, out int value))
                 {
                     OverlayFontSize.Text = "14";
                     CounterAPI.Settings.FontSize = 14;
@@ -108,7 +132,7 @@ namespace TryCounter.Views
         }
 
         public void Rebind() =>
-            CounterAPI.Bind(new HotKey(Key.Q, ModifierKeys.Alt), ShowOverlay);
+            CounterAPI.Bind(new HotKey(Key.Q, ModifierKeys.Alt));
         
 
         private void ShowOverlay(KeyPressedEventArgs e)
@@ -131,25 +155,59 @@ namespace TryCounter.Views
         {
             CurrentCounter.Add();
             CounterTB.Text = CurrentCounter.Count.ToString();
-            CounterAPI.Save();
         }
 
         private void RemoveButton_Click(object sender, System.Windows.RoutedEventArgs e)
         {
             CurrentCounter.Remove();
             CounterTB.Text = CurrentCounter.Count.ToString();
-            CounterAPI.Save();
         }
 
-        private void Button_Click(object sender, System.Windows.RoutedEventArgs e)
+        private void Back(object sender, System.Windows.RoutedEventArgs e)
         {
-            CounterAPI.Save();
+            CurrentCounter = null;
             BackPage.Refresh();
             NavigationService.GoBack();
-            CounterAPI.UnBind(new GlobalHotKey.HotKey(Key.A, ModifierKeys.Alt));
+            CounterAPI.UnBind(new HotKey(Key.A, ModifierKeys.Alt));
             CounterAPI.UnBind(new HotKey(Key.E, ModifierKeys.Alt));
             CounterAPI.UnBind(new HotKey(Key.Q, ModifierKeys.Alt));
             CounterAPI.UnBind(new HotKey(Key.E, ModifierKeys.Control | ModifierKeys.Alt));
+            AdditionalValue.TextChanged -= delegate
+            {
+                if (!int.TryParse(AdditionalValue.Text, out int value))
+                {
+                    AdditionalValue.Text = string.Empty;
+                    return;
+                }
+                CurrentCounter.Additional = value;
+            };
+            CounterName.TextChanged -= delegate
+            {
+                CurrentCounter.Name = CounterName.Text;
+                PlaceHolder();
+            };
+            CounterName.GotFocus -= delegate
+            {
+                CounterName.Text = string.Empty;
+            };
+            ShowAllAttempts.Checked -= delegate
+            {
+                CounterAPI.Settings.ShowFolderCounts = (bool)ShowAllAttempts.IsChecked;
+            };
+            TextPositionInput.SelectionChanged -= delegate
+            {
+                CounterAPI.Settings.TextPos = (TextPosition)TextPositionInput.SelectedItem;
+            };
+            OverlayFontSize.TextChanged -= delegate
+            {
+                if (!int.TryParse(OverlayFontSize.Text, out int value))
+                {
+                    OverlayFontSize.Text = "14";
+                    CounterAPI.Settings.FontSize = 14;
+                    return;
+                }
+                CounterAPI.Settings.FontSize = value;
+            };
         }
 
         private void ShowOverlay(object sender, System.Windows.RoutedEventArgs e)
@@ -182,7 +240,7 @@ namespace TryCounter.Views
         {
             ColorDialog colorDialog = new ColorDialog();
 
-            if (colorDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            if (colorDialog.ShowDialog() == DialogResult.OK)
             {
                 System.Drawing.Color selectedColor = colorDialog.Color;
 
@@ -194,7 +252,10 @@ namespace TryCounter.Views
 
         private void RemoveCounter(object sender, System.Windows.RoutedEventArgs e)
         {
-            CounterAPI.UnBind(new GlobalHotKey.HotKey(Key.A, ModifierKeys.Alt));
+            CounterAPI.UnBind(new HotKey(Key.A, ModifierKeys.Alt));
+            CounterAPI.UnBind(new HotKey(Key.E, ModifierKeys.Alt));
+            CounterAPI.UnBind(new HotKey(Key.Q, ModifierKeys.Alt));
+            CounterAPI.UnBind(new HotKey(Key.E, ModifierKeys.Control | ModifierKeys.Alt));
             CounterAPI.RemoveCounter(BackPage.CurrentFolder.Name,CurrentCounter.Name);
             NavigationService.GoBack();
             BackPage.Refresh();

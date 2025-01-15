@@ -1,8 +1,11 @@
 ﻿using GlobalHotKey;
 using Newtonsoft.Json;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Windows;
+using System.Windows.Documents;
 using System.Windows.Media;
 using TryCounter.Models.Data;
 
@@ -104,14 +107,17 @@ namespace TryCounter.Models
             Data = JsonConvert.DeserializeObject<MainData>(File.ReadAllText(MainDataPath));
         }
 
-        public static void Bind(HotKey hotkey, Action<KeyPressedEventArgs> action)
-        {
+        public static void Bind(HotKey hotkey) =>
             Manager.Register(hotkey);
-            Manager.KeyPressed += (o,e) => action.Invoke(e);
-        }
+        
         
         public static void UnBind(HotKey hotkey) =>
             Manager.Unregister(hotkey);
+
+        public static void BindActions(List<Action<KeyPressedEventArgs>> actions)
+        {
+            foreach (var item in actions) Manager.KeyPressed += (o,e) => item?.Invoke(e);
+        }
         
     }
 }

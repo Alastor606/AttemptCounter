@@ -1,5 +1,6 @@
 ﻿using GlobalHotKey;
 using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Runtime.InteropServices;
 using System.Windows;
@@ -25,11 +26,16 @@ namespace TryCounter.Views
         public OverlayWindow(CounterPage currentCounter)
         {
             InitializeComponent();
-            CounterAPI.Bind(new HotKey(Key.Q, ModifierKeys.Alt), ShowSelf);
+            CounterAPI.Bind(new HotKey(Key.Q, ModifierKeys.Alt));
+            CounterAPI.BindActions(new List<Action<KeyPressedEventArgs>>()
+            {
+                ShowSelf
+            });
+            CurrentCounter = currentCounter;
 
             CounterText.FontSize = CounterAPI.Settings.FontSize;
             CounterText.Foreground = new System.Windows.Media.SolidColorBrush(CounterAPI.Settings.FontColor);
-            CurrentCounter = currentCounter;
+            
             CurrentCounter.OnChange += x =>
             {
                 CounterText.Text = x;

@@ -14,6 +14,7 @@ namespace TryCounter.Views
         public Folder CurrentFolder;
         private bool _isNewFolder = false;
         private string folderName;
+        private CounterPage _page;
 
 
         public FolderPage()
@@ -21,6 +22,7 @@ namespace TryCounter.Views
             InitializeComponent();
             CurrentFolder = new Folder();
             _isNewFolder = true;
+            _page = new CounterPage();
             FolderName.LostFocus += delegate
             {
                 CurrentFolder.Name = FolderName.Text;
@@ -39,6 +41,7 @@ namespace TryCounter.Views
         public FolderPage(Folder folder)
         {
             InitializeComponent();
+            _page = new CounterPage();
             CurrentFolder = folder;
             FolderName.Text = folder.Name;
             CountersList.ItemsSource = folder.Counters;
@@ -61,18 +64,17 @@ namespace TryCounter.Views
         public void Refresh()
         {
             CountersList.ItemsSource = null;
-            CounterAPI.Refresh();
             CountersList.ItemsSource = CurrentFolder.Counters;
         }
 
-        private void Button_Click(object sender, System.Windows.RoutedEventArgs e)
+        private void AddCounter(object sender, System.Windows.RoutedEventArgs e)
         {
             CurrentFolder.Counters.Add(new Counter("New Counter"));
             if (_isNewFolder) CounterAPI.AddFolder(CurrentFolder);
             Refresh();
         }
 
-        private void Button_Click_1(object sender, System.Windows.RoutedEventArgs e)
+        private void Back(object sender, System.Windows.RoutedEventArgs e)
         {
             if (CurrentFolder.Name == string.Empty) return;
             if(_isNewFolder)CounterAPI.AddFolder(CurrentFolder);
@@ -86,9 +88,9 @@ namespace TryCounter.Views
 
         private void CountersList_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            CounterAPI.Save();
             if (CountersList.SelectedItem == null) return;
-            NavigationService.Navigate(new CounterPage(CountersList.SelectedItem as Counter, this));
+            _page.Init(CountersList.SelectedItem as Counter, this);
+            NavigationService.Navigate(_page);
         }
     }
 }

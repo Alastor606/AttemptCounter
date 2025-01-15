@@ -1,4 +1,6 @@
 ﻿using GlobalHotKey;
+using System.ComponentModel;
+using System.Threading;
 using System.Windows;
 using TryCounter.Models;
 using TryCounter.Views;
@@ -13,11 +15,13 @@ namespace TryCounter
             InitializeComponent();
             CounterAPI.Init();
             MainFrame.Navigate(new MainPage());
-            this.Closing += delegate
-            {
-                CounterAPI.Save();
-            };
             singletone = this;
+        }
+
+        protected override void OnClosing(CancelEventArgs e)
+        {
+            CounterAPI.Save();
+            base.OnClosing(e);
         }
     }
 }
